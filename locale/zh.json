@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "会话归档",
+    "description": "每条会话自动生成独立文件夹：聊天记录.md + 源码文件/ + 其他产出文件/，文件夹名按【开发/文案/方案/调试-摘要】自动提炼。"
+  },
+  "settings": {
+    "enabled": "启用会话归档",
+    "extractCode": "自动提取代码为独立源码文件",
+    "extractLongText": "长文本单独存入其他产出文件",
+    "divertWorkspaceFiles": "工作区散文件自动分流",
+    "nameTemplate": "命名模板",
+    "blacklist": "黑名单关键词",
+    "compressAfter": "自动压缩阈值（条）",
+    "cleanupHistoryDays": "历史文件保留天数"
+  }
+}

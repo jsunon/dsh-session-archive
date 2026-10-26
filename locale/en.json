@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "Session Archive",
+    "description": "Gives every session its own folder: chat.md + source/ + deliverables/, named from a 【dev/copy/plan/debug-summary】 of the session."
+  },
+  "settings": {
+    "enabled": "Enable session archiving",
+    "extractCode": "Extract code blocks into separate source files",
+    "extractLongText": "Store long text blocks as deliverable files",
+    "divertWorkspaceFiles": "Route loose workspace files automatically",
+    "nameTemplate": "Folder name template",
+    "blacklist": "Blacklist keywords",
+    "compressAfter": "Auto-compress threshold (messages)",
+    "cleanupHistoryDays": "History retention (days)"
+  }
+}
