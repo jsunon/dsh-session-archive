@@ -1,6 +1,7 @@
 {
   "name": "dsh-session-archive",
   "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "description": "会话归档：每条新会话在 工作区/会话归档/ 下自动生成独立文件夹，内含 聊天记录.md、源码文件/、其他产出文件/，并按【开发/文案/方案/调试】命名。",
   "type": "module",
@@ -15,7 +16,8 @@
     "locale",
     "icon.svg",
     "cordis.patch.yml",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "dsh": {
     "bundle": {
