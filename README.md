@@ -1,6 +1,6 @@
 # dsh-session-archive · Session Archive / 会话归档
 
-**English** | [中文](#中文说明)
+[English](README.en.md) | [中文](README.md)
 
 Automatically bucket the files a DSH session produces by **output dimension**, so you can tell at a glance what matters, what can be deleted, and what is safe to open-source.
 
