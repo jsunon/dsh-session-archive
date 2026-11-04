@@ -4,6 +4,7 @@
 // （曾经它 200 但返回的仍是旧配置）。这里不启动宿主，直接调 apply()，
 // 断言「新代码会注册哪些路由」——不重启也能确认新版会不会生效。
 import { readFileSync } from 'node:fs';
+import * as fs from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { apply } from '../lib/index.js';
@@ -85,7 +86,7 @@ check('lib/index.js 用到的 layout.js 导出都已 import', () => {
   const m = source.match(/import\s*\{([^}]*)\}\s*from\s*'\.\/layout\.js'/);
   if (!m) throw new Error("找不到 import ... from './layout.js'");
   const imported = m[1].split(',').map((s) => s.trim().split(/\s+as\s+/)[0]).filter(Boolean);
-  const used = exported.filter((name) => new RegExp(`\\b${name}\\s*[({.]`).test(source));
+  const used = exported.filter((name) => source.includes(name + '(') || source.includes(name + '.') || source.includes(name + '{'));
   const missing = used.filter((name) => !imported.includes(name));
   if (missing.length) throw new Error('用了但没 import：' + missing.join(', '));
   if (!used.length) throw new Error('没检出任何 layout.js 导出被使用，检查规则可能失效');
@@ -93,3 +94,12 @@ check('lib/index.js 用到的 layout.js 导出都已 import', () => {
 
 console.log(`\n通过 ${pass} 项，失败 ${fail} 项`);
 if (fail) process.exitCode = 1;
+check('settings-page 模块已接线', () => {
+  const idx = fs.readFileSync(new URL('../lib/index.js', import.meta.url), 'utf8');
+  if (!idx.includes("import { settingsPage } from './settings-page.js'")) throw new Error('index.js 必须导入 settingsPage');
+  if (idx.split('settingsPage(cfg(), state, API)').length < 2) throw new Error('设置页路由必须传 API 前缀');
+  const sp = fs.readFileSync(new URL('../lib/settings-page.js', import.meta.url), 'utf8');
+  if (!sp.includes('export function settingsPage')) throw new Error('settings-page.js 必须导出 settingsPage');
+  if (!sp.includes('Session Archive · Settings')) throw new Error('英文字符串表必须存在');
+  if (!sp.includes('会话归档 · 设置')) throw new Error('中文字符串表必须存在');
+});
