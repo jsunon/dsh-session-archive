@@ -1,7 +1,6 @@
 # CI 配置
 
-GitHub 对 `.github/workflows/` 下的文件有硬限制：推送它的 token 必须带 `workflow` scope。
-本仓库发布时用的 token 只有 `repo` scope，所以这份配置暂存在这里。
+✅ CI 已启用：`.github/workflows/test.yml` 已于 2026-11-04 通过网页提交（commit b067806），push/PR 均自动跑六套测试（Node 22/24 矩阵）。本文件保留作为配置说明与变更记录。
 
 ## 启用方式（二选一）
 
