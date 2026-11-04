@@ -1,0 +1,56 @@
+{
+  "name": "dsh-session-archive",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "DSH 会话归档插件：按产出维度自动分桶（01-成品 / 02-源码 / 03-工具 / 04-产物 / 05-参考 / _临时），代码块语义命名、内容去重、开源前安全扫描、审计链与只读保护，空桶不建。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "bin": {
+    "dsh-archive-plan": "./bin/plan.mjs",
+    "dsh-archive-migrate": "./bin/migrate.mjs"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "locale",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node tests/naming.test.mjs && node tests/classify.test.mjs && node tests/pipeline.test.mjs && node tests/plugin.test.mjs && node tests/chat-blocks.test.mjs && node tests/routes.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsunon/dsh-session-archive.git"
+  },
+  "homepage": "https://github.com/jsunon/dsh-session-archive#readme",
+  "bugs": {
+    "url": "https://github.com/jsunon/dsh-session-archive/issues"
+  },
+  "author": "jsunon",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "session",
+    "archive",
+    "organize",
+    "classify",
+    "dedupe"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

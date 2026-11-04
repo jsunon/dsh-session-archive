@@ -1,0 +1,86 @@
+# ============================================================================
+# dsh-session-archive —— 会话归档（按维度分类的产物目录）
+# ============================================================================
+# 只有一个 loader 条目：宿主半区（package.json 的 main / exports["."]）在宿主
+# 进程里监听 session/created 与 session/event，把每条会话写成结构化目录：
+#
+#   <工作区>/【类目-摘要】/
+#   ├── README.md            索引：会话类型、产物清单、哪些能删
+#   ├── MANIFEST.json        审计链：每个文件为什么在这里
+#   ├── 聊天记录.md
+#   ├── session.json
+#   ├── 01-成品/             只读导出，唯一可 git push
+#   ├── 02-源码/             唯一可写真源（原始/补丁/快照）
+#   ├── 03-工具/             可复用脚本
+#   ├── 04-产物/             非代码产出（长期/一次性）
+#   ├── 05-参考/             外部资料与结论
+#   └── _临时/               整个删掉零影响（重复/未归类/失败尝试/探测）
+#
+# 空桶不建：纯提问会话只有 05-参考 + _临时。
+# 没有浏览器半区，所以不需要 dsh.client。
+# 设置面板：http://127.0.0.1:<web端口>/dsh-session-archive
+# 试运行接口：/dsh-session-archive/api/plan（只算不写）
+# ============================================================================
+
+- insert:
+    - id: dsh-session-archive
+      name: 'dsh-session-archive'
+      config:
+        # 总开关；关闭后不再新建/更新会话文件夹。
+        enabled: true
+        # 唯一主入口文件夹名。
+        # 留空 = 会话文件夹直接放在工作区根目录（不再多一层「会话归档」）
+        containerName: ''
+        # 命名模板。支持占位符 {kind} 类目、{summary} 摘要、{date} 日期、{time} 时间。
+        nameTemplate: '【{kind}-{summary}】'
+        # 名称长度限制（字符数），规格要求 15~30。
+        minChars: 15
+        maxChars: 30
+        # 是否自动把代码块提取成独立文件；关闭则代码留在聊天日志里。
+        extractCode: true
+        # 是否把非代码的长文本块（md/txt）也单独存成文件。
+        extractLongText: false
+        # 黑名单关键词：命中则不新建会话文件夹（标题或首条消息包含即命中）。
+        blacklist: []
+        # 是否也给子代理（subagent）会话建文件夹。
+        includeSubagents: false
+        # 会话创建后等待多久落盘（毫秒）：给标题/首条消息留出生成时间。
+        settleMs: 1500
+        # 兜底扫描间隔（毫秒）：补写漏掉的更新、处理标题晚到后的改名。
+        tickMs: 20000
+        # 同一会话重排程的最小间隔（毫秒）。
+        refreshMs: 60000
+        # 自动压缩：聊天记录超过 N 条后，把旧内容转入 聊天记录-历史-<时间>.md；0=关闭。
+        compressAfter: 0
+        # 自动清理：历史文件保留天数，超期删除；0=永久保留。
+        cleanupHistoryDays: 0
+        # 是否写 session.json（会话元数据：ID、目录、维度、条数、时间）。
+        writeSessionJson: true
+        # 是否把散落在会话文件夹根目录的文件按扩展名分流。结构化模式已内置归位，无需开启。
+        divertWorkspaceFiles: false
+        # 是否把工作区根目录的其它文件夹收进会话文件夹。
+        # 结构化模式下此项失效：永不动工作区根，只生成「待归位」清单。
+        absorbWorkspaceRoot: true
+
+        # ---- 结构化分类（核心） ----
+        # 按维度建桶：DEV/FIX/ASK/OPS/DOC/DATA → 01~05 + _临时
+        # 关闭后退回旧版平铺行为（所有文件扔在会话文件夹根）。
+        structured: true
+        # 写 README.md + MANIFEST.json 审计链
+        writeManifest: true
+        # 落盘后做密钥/私钥/路径扫描；命中高危则 README 标红，01-成品 不可发布
+        safetyScan: true
+        # 重复文件（sha256 相同）自动进 _临时/重复，不产生 -2 副本
+        dedupeByHash: true
+        # 严格根目录：会话根只允许 4 个文件，其余强制归桶
+        strictRoot: false
+
+        # 七个固定目录名（留空 = 不建该桶）
+        dirs:
+          chat: '聊天记录.md'
+          deliver: '01-成品'
+          src: '02-源码'
+          tools: '03-工具'
+          output: '04-产物'
+          ref: '05-参考'
+          trash: '_临时'

@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "会话归档",
+    "description": "每条会话一个独立文件夹，按维度自动分类：01-成品 / 02-源码 / 03-工具 / 04-产物 / 05-参考 / _临时。空桶不建，根目录只留 4 个文件。"
+  },
+  "settings": {
+    "enabled": "启用会话归档",
+    "structured": "结构化分类（按维度建桶，空桶不建）",
+    "extractCode": "自动提取代码为独立源码文件",
+    "extractLongText": "长文本单独存入产物",
+    "divertWorkspaceFiles": "工作区散文件自动分流",
+    "absorbWorkspaceRoot": "收纳工作区根目录（结构化模式只生成待归位清单）",
+    "writeManifest": "写 README.md + MANIFEST.json 审计链",
+    "safetyScan": "开源前安全扫描（密钥/私钥/路径）",
+    "dedupeByHash": "内容去重（sha256，不产生 -2 副本）",
+    "strictRoot": "严格根目录（只允许 4 个文件）",
+    "nameTemplate": "命名模板",
+    "blacklist": "黑名单关键词",
+    "compressAfter": "自动压缩阈值（条）",
+    "cleanupHistoryDays": "历史文件保留天数"
+  },
+  "buckets": {
+    "deliver": "成品（唯一可 git push）",
+    "src": "源码（唯一可写真源）",
+    "output": "非代码产出",
+    "tools": "可复用脚本",
+    "ref": "外部资料与结论",
+    "trash": "整个删掉零影响"
+  }
+}

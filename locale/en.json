@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "Session Archive",
+    "description": "One folder per session, classified by output dimensions: 01-deliver / 02-source / 03-tools / 04-output / 05-reference / _trash. Empty buckets are never created; the root keeps only 4 files."
+  },
+  "settings": {
+    "enabled": "Enable session archive",
+    "structured": "Structured layout (bucket per dimension, no empty buckets)",
+    "extractCode": "Extract code blocks into separate source files",
+    "extractLongText": "Save long text blocks as output files",
+    "divertWorkspaceFiles": "Sort loose workspace files automatically",
+    "absorbWorkspaceRoot": "Absorb workspace root (structured mode only writes a to-sort list)",
+    "writeManifest": "Write README.md + MANIFEST.json audit trail",
+    "safetyScan": "Pre-publish safety scan (keys, private keys, paths)",
+    "dedupeByHash": "Content dedupe (sha256, no -2 copies)",
+    "strictRoot": "Strict root (only 4 files allowed)",
+    "nameTemplate": "Name template",
+    "blacklist": "Blacklist keywords",
+    "compressAfter": "Compress after N messages",
+    "cleanupHistoryDays": "Keep history files for N days"
+  },
+  "buckets": {
+    "deliver": "Deliverable (the only git-pushable bucket)",
+    "src": "Source (the only writable source of truth)",
+    "tools": "Reusable scripts",
+    "output": "Non-code output",
+    "ref": "External reference and conclusions",
+    "trash": "Safe to delete entirely"
+  }
+}
