@@ -66,6 +66,17 @@ check('每条路由都带 handler', () => {
 // 回归：曾经 lib/index.js 调了 planLayout() 却没 import，导致 /api/plan 每行都报
 // 「planLayout is not defined」，而路由本身注册成功——只看路由表是抓不到的。
 // 这里做一次轻量静态检查：凡是源码里用到的 ./layout.js 导出，必须真的在 import 列表里。
+check('pipeline.js 导出了 resolveActive（plan 路由要用它读覆盖锁）', () => {
+  const src = readFileSync(join(libDir, 'pipeline.js'), 'utf8');
+  if (src.indexOf('resolveActive') < 0 || src.indexOf('export {') < 0) throw new Error('resolveActive 未导出');
+});
+
+check('plan 路由把 override 传给 resolveActive（否则锁定维度在试运行里不生效）', () => {
+  const src = readFileSync(join(libDir, 'index.js'), 'utf8');
+  if (src.split('resolveActive(analysis,').length < 2) throw new Error('plan 路由没接 override');
+  if (!/entry.override/.test(src)) throw new Error('plan 路由没读 entry.override');
+});
+
 check('lib/index.js 用到的 layout.js 导出都已 import', () => {
   const layoutSrc = readFileSync(join(libDir, 'layout.js'), 'utf8');
   const exported = [...layoutSrc.matchAll(/export\s+(?:const|function|async function|let)\s+([A-Za-z_$][\w$]*)/g)]
