@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - name: 跑六套测试
+      - name: 跑七套测试
         run: |
           node tests/naming.test.mjs
           node tests/classify.test.mjs
@@ -25,3 +25,4 @@ jobs:
           node tests/plugin.test.mjs
           node tests/chat-blocks.test.mjs
           node tests/routes.test.mjs
+          node tests/client.test.mjs

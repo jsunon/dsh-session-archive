@@ -44,7 +44,19 @@ curl http://127.0.0.1:<port>/dsh-session-archive/api/health
 
 ### 本地开发
 
-先克隆仓库，用 `pnpm add <本地路径>` 把 profile 指向它（也可以用 `~/.dsh/local-plugins/` 下的软链接），重启宿主，再用 `node tests/*.test.mjs` 跑完六套测试。
+先克隆仓库，用 `pnpm add <本地路径>` 把 profile 指向它（也可以用 `~/.dsh/local-plugins/` 下的软链接），重启宿主，再用 `node tests/*.test.mjs` 跑完七套测试。
+
+## 界面内面板（浏览器半区）
+
+`package.json` 里声明了 `dsh.client` 并导出 `./client`，宿主会把 `lib/client.js` 一起加载进 Web 应用，不用再另开页面：
+
+| 位置 | 你会看到 |
+| --- | --- |
+| 左侧栏「插件」下方 | **会话归档** 入口（order 35） |
+| 该面板 | 状态 / 设置 / 计划 / 会话 / 输出 五个页签——立即归档、自检、把散文件移回工作区、干跑计划、开关实时保存 |
+| 插件 → 已安装 → 会话归档 | 同一套设置表单，作为配置卡出现 |
+
+面板里的数据全部来自下面的 HTTP API，所以独立页面（`GET /dsh-session-archive`）照旧可用、看到的状态一致。客户端包只从浏览器模块表取 `react`，注册三个 slot（`sidebar.panellist`、`main`、`plugins.bundle.config`）；每处注册都做了兜底，单个 slot 坏掉不会拖住应用启动。
 
 ## 目录结构长什么样
 

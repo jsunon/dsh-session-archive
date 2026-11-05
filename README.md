@@ -44,7 +44,19 @@ If `dirs` has seven keys (`chat` / `deliver` / `src` / `tools` / `output` / `ref
 
 ### Local development
 
-Clone, then point a profile at it with `pnpm add <local path>` (or a junction from `~/.dsh/local-plugins/`), restart the host, and run the six test suites with `node tests/*.test.mjs`.
+Clone, then point a profile at it with `pnpm add <local path>` (or a junction from `~/.dsh/local-plugins/`), restart the host, and run the seven test suites with `node tests/*.test.mjs`.
+
+## In-app panel (browser half)
+
+`package.json` declares `dsh.client` and exports `./client`, so the host also loads `lib/client.js` into the web app. You do not have to open a separate page:
+
+| Where | What you get |
+| --- | --- |
+| Left sidebar, under **Plugins** | **Session Archive** entry (order 35) |
+| That panel | Status / Settings / Plan / Sessions / Output tabs — archive now, self-test, move loose files back, dry-run plan, live switch flips |
+| Plugins → installed → Session Archive | the same settings form as a config card |
+
+Everything the panel shows comes from the HTTP API below, so the standalone page (`GET /dsh-session-archive`) still works and shows the same state. The client bundle only pulls `react` from the browser module table and registers three slots (`sidebar.panellist`, `main`, `plugins.bundle.config`); every registration is guarded so a broken slot can never block app boot.
 
 ## What the layout looks like
 

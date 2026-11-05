@@ -17,8 +17,11 @@
 #   └── _临时/               整个删掉零影响（重复/未归类/失败尝试/探测）
 #
 # 空桶不建：纯提问会话只有 05-参考 + _临时。
-# 没有浏览器半区，所以不需要 dsh.client。
-# 设置面板：http://127.0.0.1:<web端口>/dsh-session-archive
+# 浏览器半区：lib/client.js（dsh.client platform=web），在 DSH 界面里注册
+#   sidebar.panellist（左侧栏「会话归档」按钮）
+#   main             （key=dsh-session-archive 的整页设置面板）
+#   plugins.bundle.config（插件详情页的配置卡）
+# 独立 HTML 设置页仍在：http://127.0.0.1:<web端口>/dsh-session-archive
 # 试运行接口：/dsh-session-archive/api/plan（只算不写）
 # ============================================================================
 
