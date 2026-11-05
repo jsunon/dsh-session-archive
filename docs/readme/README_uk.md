@@ -1,6 +1,6 @@
 <div align="center">
 
-[English](./README.md) · [简体中文](./README_zh.md) · [繁體中文](./README_zh-TW.md) · [日本語](./README_ja.md) · [한국어](./README_ko.md) · [Türkçe](./README_tr.md) · [Русский](./README_ru.md) · [Tiếng Việt](./README_vi.md) · [ไทย](./README_th.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · **Українська** · [Polski](./README_pl.md) · [Português (Brasil)](./README_pt-BR.md) · [العربية](./README_ar.md) · [فارسی](./README_fa.md) · [Bahasa Indonesia](./README_id.md) · [Italiano](./README_it.md) · [Ελληνικά](./README_el.md) · [മലയാളം](./README_ml.md) · [Roman Urdu](./README_ur-Latn.md) · [Română](./README_ro.md)
+[English](../README.md) · [简体中文](./README_zh.md) · [繁體中文](./README_zh-TW.md) · [日本語](./README_ja.md) · [한국어](./README_ko.md) · [Türkçe](./README_tr.md) · [Русский](./README_ru.md) · [Tiếng Việt](./README_vi.md) · [ไทย](./README_th.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · **Українська** · [Polski](./README_pl.md) · [Português (Brasil)](./README_pt-BR.md) · [العربية](./README_ar.md) · [فارسی](./README_fa.md) · [Bahasa Indonesia](./README_id.md) · [Italiano](./README_it.md) · [Ελληνικά](./README_el.md) · [മലയാളം](./README_ml.md) · [Roman Urdu](./README_ur-Latn.md) · [Română](./README_ro.md)
 
 </div>
 
@@ -112,7 +112,7 @@ dirs:
   trash:   _trash
 ```
 
-Усі параметри: [`docs/config.md`](docs/config.md).
+Усі параметри: [`docs/config.md`](../config.md).
 
 ## HTTP API
 
@@ -149,7 +149,7 @@ rm -rf ~/.dsh/storages/session-archive
 
 ## Нотатки про дизайн
 
-Логіка класифікації, пріоритет маршрутизації, правила найменування, перевірка безпеки, журнал аудиту, захист від запису: [`docs/design.md`](docs/design.md).
+Логіка класифікації, пріоритет маршрутизації, правила найменування, перевірка безпеки, журнал аудиту, захист від запису: [`docs/design.md`](../design.md).
 
 ## Ліцензія
 

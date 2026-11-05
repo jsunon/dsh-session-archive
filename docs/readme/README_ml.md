@@ -1,6 +1,6 @@
 <div align="center">
 
-[English](./README.md) · [简体中文](./README_zh.md) · [繁體中文](./README_zh-TW.md) · [日本語](./README_ja.md) · [한국어](./README_ko.md) · [Türkçe](./README_tr.md) · [Русский](./README_ru.md) · [Tiếng Việt](./README_vi.md) · [ไทย](./README_th.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [Українська](./README_uk.md) · [Polski](./README_pl.md) · [Português (Brasil)](./README_pt-BR.md) · [العربية](./README_ar.md) · [فارسی](./README_fa.md) · [Bahasa Indonesia](./README_id.md) · [Italiano](./README_it.md) · [Ελληνικά](./README_el.md) · **മലയാളം** · [Roman Urdu](./README_ur-Latn.md) · [Română](./README_ro.md)
+[English](../README.md) · [简体中文](./README_zh.md) · [繁體中文](./README_zh-TW.md) · [日本語](./README_ja.md) · [한국어](./README_ko.md) · [Türkçe](./README_tr.md) · [Русский](./README_ru.md) · [Tiếng Việt](./README_vi.md) · [ไทย](./README_th.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [Українська](./README_uk.md) · [Polski](./README_pl.md) · [Português (Brasil)](./README_pt-BR.md) · [العربية](./README_ar.md) · [فارسی](./README_fa.md) · [Bahasa Indonesia](./README_id.md) · [Italiano](./README_it.md) · [Ελληνικά](./README_el.md) · **മലയാളം** · [Roman Urdu](./README_ur-Latn.md) · [Română](./README_ro.md)
 
 </div>
 
@@ -112,7 +112,7 @@ dirs:
   trash:   _trash
 ```
 
-എല്ലാ ഓപ്ഷനുകളും: [`docs/config.md`](docs/config.md).
+എല്ലാ ഓപ്ഷനുകളും: [`docs/config.md`](../config.md).
 
 ## HTTP API
 
@@ -149,7 +149,7 @@ rm -rf ~/.dsh/storages/session-archive
 
 ## ഡിസൈൻ കുറിപ്പുകൾ
 
-തരംതിരിക്കൽ യുക്തി, റൂട്ടിംഗ് മുൻഗണന, നാമകരണ നിയമങ്ങൾ, സുരക്ഷാ സ്കാൻ, ഓഡിറ്റ് ട്രെയിൽ, വായന-മാത്ര പരിരക്ഷ: [`docs/design.md`](docs/design.md).
+തരംതിരിക്കൽ യുക്തി, റൂട്ടിംഗ് മുൻഗണന, നാമകരണ നിയമങ്ങൾ, സുരക്ഷാ സ്കാൻ, ഓഡിറ്റ് ട്രെയിൽ, വായന-മാത്ര പരിരക്ഷ: [`docs/design.md`](../design.md).
 
 ## അനുമതി
 
