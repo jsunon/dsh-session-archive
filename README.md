@@ -1,7 +1,5 @@
 # dsh-session-archive · Session Archive / 会话归档
 
-[English](README.en.md) | [中文](README.md)
-
 Automatically bucket the files a DSH session produces by **output dimension**, so you can tell at a glance what matters, what can be deleted, and what is safe to open-source.
 
 One session = one folder. Inside, buckets are created on demand (deliverables / source / tools / output / reference / trash). **Empty buckets are never created**; only 4 files may sit at the folder root.
