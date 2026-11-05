@@ -1,4 +1,12 @@
-# dsh-session-archive · Session Archive / 会话归档
+<div align="center">
+
+**English** · [简体中文](./README_zh.md) · [繁體中文](./README_zh-TW.md) · [日本語](./README_ja.md) · [한국어](./README_ko.md) · [Türkçe](./README_tr.md) · [Русский](./README_ru.md) · [Tiếng Việt](./README_vi.md) · [ไทย](./README_th.md) · [Deutsch](./README_de.md) · [Español](./README_es.md) · [Français](./README_fr.md) · [Українська](./README_uk.md) · [Polski](./README_pl.md) · [Português (Brasil)](./README_pt-BR.md) · [العربية](./README_ar.md) · [فارسی](./README_fa.md) · [Bahasa Indonesia](./README_id.md) · [Italiano](./README_it.md) · [Ελληνικά](./README_el.md) · [മലയാളം](./README_ml.md) · [Roman Urdu](./README_ur-Latn.md) · [Română](./README_ro.md)
+
+</div>
+
+# dsh-session-archive
+
+### Session Archive — bucket every file a DSH session produces.
 
 Automatically bucket the files a DSH session produces by **output dimension**, so you can tell at a glance what matters, what can be deleted, and what is safe to open-source.
 
@@ -68,10 +76,8 @@ First archive auto-tidies the old layout. With lots of history, run it manually 
 ```bash
 # 1) Dry run: computes dimensions and the routing plan, touches nothing
 node bin/plan.mjs "<workspace root>"
-
 # 2) Try one session
 node bin/migrate.mjs "<workspace root>" --apply --only "【one session name】"
-
 # 3) Then the whole batch
 node bin/migrate.mjs "<workspace root>" --apply
 ```
@@ -112,7 +118,7 @@ Full options: [`docs/config.md`](docs/config.md).
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| GET | `/dsh-session-archive` | settings panel (中文 / English / both) |
+| GET | `/dsh-session-archive` | settings panel (Chinese / English / both) |
 | GET | `/dsh-session-archive/api/health` | health + current config |
 | GET | `/dsh-session-archive/api/state` | archived session list |
 | GET | `/dsh-session-archive/api/plan` | **dry run**: dimensions and plan, no writes |
@@ -130,11 +136,9 @@ Four places, in order:
 ```bash
 # 1) remove the source copy (skip if installed from the repo; just remove from node_modules)
 rm -rf ~/.dsh/local-plugins/dsh-session-archive
-
 # 2) remove the profile install
 cd ~/.dsh/profiles/<profile-name>
 pnpm remove dsh-session-archive
-
 # 3) remove the runtime index (optional; history index is rebuilt on next archive)
 rm -rf ~/.dsh/storages/session-archive
 ```
@@ -150,8 +154,3 @@ Classification logic, routing priority, naming rules, safety scan, audit trail, 
 ## License
 
 MIT
-
----
-
-
-
