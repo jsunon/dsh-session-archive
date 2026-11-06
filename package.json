@@ -1,6 +1,6 @@
 {
   "name": "dsh-session-archive",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "license": "MIT",
   "description": "DSH 会话归档插件：按产出维度自动分桶（01-成品 / 02-源码 / 03-工具 / 04-产物 / 05-参考 / _临时），代码块语义命名、内容去重、开源前安全扫描、审计链与只读保护，空桶不建。",
   "type": "module",

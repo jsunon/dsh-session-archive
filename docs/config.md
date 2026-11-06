@@ -5,6 +5,7 @@
 | 键 | 默认 | 说明 |
 | --- | --- | --- |
 | `enabled` | `true` | 总开关 |
+| `showSidebarEntry` | `true` | 左侧栏是否显示「会话归档」入口；关掉只是隐藏入口，归档照常进行 |
 | `structured` | `true` | 结构化分类；关闭退回旧版平铺 |
 | `writeManifest` | `true` | 写 README.md + MANIFEST.json |
 | `safetyScan` | `true` | 开源前安全扫描 |

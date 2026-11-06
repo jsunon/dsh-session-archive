@@ -52,9 +52,11 @@ curl http://127.0.0.1:<port>/dsh-session-archive/api/health
 
 | 位置 | 你会看到 |
 | --- | --- |
-| 左侧栏「插件」下方 | **会话归档** 入口（order 35） |
+| 左侧栏「插件」下方 | **会话归档** 入口（order 35），可用 `showSidebarEntry` 开关 |
 | 该面板 | 状态 / 设置 / 计划 / 会话 / 输出 五个页签——立即归档、自检、把散文件移回工作区、干跑计划、开关实时保存 |
 | 插件 → 已安装 → 会话归档 | 同一套设置表单，作为配置卡出现 |
+
+侧边栏入口可以在 **设置 → 基础 → 「在侧边栏显示入口」**（或插件详情页的配置卡）里关掉。关掉只是隐藏那一行，归档照常进行；勾回来立刻恢复。实现上 entry 始终保留，只在关闭时注入一条样式精准隐藏宿主那一行——因为注销 entry 会让那一行退化成「空 glyph + 文字标签」，反而更显眼。
 
 面板里的数据全部来自下面的 HTTP API，所以独立页面（`GET /dsh-session-archive`）照旧可用、看到的状态一致。客户端包只从浏览器模块表取 `react`，注册三个 slot（`sidebar.panellist`、`main`、`plugins.bundle.config`）；每处注册都做了兜底，单个 slot 坏掉不会拖住应用启动。
 
@@ -105,6 +107,7 @@ node bin/migrate.mjs "<workspace root>" --apply
 | 键 | 默认值 | 含义 |
 | --- | --- | --- |
 | `enabled` | `true` | 总开关 |
+| `showSidebarEntry` | `true` | 左侧栏是否显示「会话归档」入口；关掉只是隐藏入口，归档照常进行 |
 | `structured` | `true` | 分类目录结构；关闭则退回旧的扁平结构 |
 | `writeManifest` | `true` | 是否写 `README.md` + `MANIFEST.json` |
 | `safetyScan` | `true` | 开源安全检查 |
@@ -137,6 +140,7 @@ dirs:
 | POST | `/dsh-session-archive/api/archive` | 立即归档（可选 `?sessionId=`） |
 | POST | `/dsh-session-archive/api/override` | 锁定维度（`{sessionId, dimensions, locked, lifecycle}`） |
 | GET/POST | `/dsh-session-archive/api/config` | 读取 / 写入配置 |
+| POST | `/dsh-session-archive/api/debug` | 浏览器半区把侧边栏开关的运行时状态写进 `client-debug.log` |
 | GET | `/dsh-session-archive/api/selftest` | 自检（在临时目录里写一次） |
 
 分类不对？别改代码 —— 用 `POST /api/override` 锁定即可。

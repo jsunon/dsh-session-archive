@@ -52,9 +52,11 @@ Clone, then point a profile at it with `pnpm add <local path>` (or a junction fr
 
 | Where | What you get |
 | --- | --- |
-| Left sidebar, under **Plugins** | **Session Archive** entry (order 35) |
+| Left sidebar, under **Plugins** | **Session Archive** entry (order 35), toggleable via `showSidebarEntry` |
 | That panel | Status / Settings / Plan / Sessions / Output tabs — archive now, self-test, move loose files back, dry-run plan, live switch flips |
 | Plugins → installed → Session Archive | the same settings form as a config card |
+
+The sidebar entry can be switched off in **Settings → Basic → "Show an entry in the sidebar"** (or the config card on the plugin detail page). Turning it off hides the row only — archiving keeps running, and flipping it back restores the entry immediately. Under the hood the entry stays registered and a single injected rule hides the host's row, because unregistering would degrade the row into "empty glyph + text label" instead of removing it.
 
 Everything the panel shows comes from the HTTP API below, so the standalone page (`GET /dsh-session-archive`) still works and shows the same state. The client bundle only pulls `react` from the browser module table and registers three slots (`sidebar.panellist`, `main`, `plugins.bundle.config`); every registration is guarded so a broken slot can never block app boot.
 
@@ -105,6 +107,7 @@ Key options:
 | Key | Default | Meaning |
 | --- | --- | --- |
 | `enabled` | `true` | master switch |
+| `showSidebarEntry` | `true` | show the **Session Archive** entry in the left sidebar; off hides the row, archiving keeps running |
 | `structured` | `true` | bucketed layout; off falls back to legacy flat |
 | `writeManifest` | `true` | write `README.md` + `MANIFEST.json` |
 | `safetyScan` | `true` | open-source safety scan |
@@ -137,6 +140,7 @@ Full options: [`docs/config.md`](docs/config.md).
 | POST | `/dsh-session-archive/api/archive` | archive now (optional `?sessionId=`) |
 | POST | `/dsh-session-archive/api/override` | lock dimensions (`{sessionId, dimensions, locked, lifecycle}`) |
 | GET/POST | `/dsh-session-archive/api/config` | read/write config |
+| POST | `/dsh-session-archive/api/debug` | browser half reports sidebar-switch runtime state into `client-debug.log` |
 | GET | `/dsh-session-archive/api/selftest` | self-test (writes once into a temp dir) |
 
 Wrong classification? Don't patch code — lock it with `POST /api/override`.
